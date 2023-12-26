@@ -19,13 +19,14 @@ coverage
 /cypress/videos/
 /cypress/screenshots/
 
+# Vs code
+.vscode/*
 
 # Include
 !.vscode/extensions.json
 !.vscode/settings.json
 
 # Editor directories and files
-.vscode/*
 .idea
 *.suo
 *.ntvs*
