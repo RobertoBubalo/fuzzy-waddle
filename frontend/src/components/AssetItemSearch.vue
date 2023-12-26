@@ -1,0 +1,49 @@
+<script setup lang="ts">
+import { ref } from "vue"
+
+const emit = defineEmits(["selected"])
+
+const items = [
+    {
+        id: 1,
+        name: "test",
+        tickerSymbol: "t",
+        shares: 12,
+        shareValue: 23,
+    },
+    {
+        id: 2,
+        name: "best",
+        tickerSymbol: "b",
+        shares: 34,
+        shareValue: 45,
+    },
+    {
+        id: 3,
+        name: "cest",
+        tickerSymbol: "c",
+        shares: 56,
+        shareValue: 78,
+    },
+]
+
+const selected = ref(null)
+
+function valueSelected() {
+    emit("selected", selected.value)
+}
+</script>
+<template>
+    <!-- get the list from backend, but in the meanwhile fetch it from local storage if an entry exists -->
+    <v-autocomplete
+        v-model="selected"
+        :items="items"
+        item-title="name"
+        :item-value="(i) => i.id"
+        @update:model-value="valueSelected"
+        label="Input ticker symbol"
+        variant="outlined"
+        return-object
+    />
+</template>
+<!-- On selected event - blur the input -->
