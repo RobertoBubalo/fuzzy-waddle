@@ -1,30 +1,30 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import AssetItemSearch from './AssetItemSearch.vue'
-import type { Asset } from '@/models/Asset'
+import { computed } from "vue"
+import AssetItemSearch from "./AssetItemSearch.vue"
+import type { Asset } from "@/models/Asset"
 
-const emit = defineEmits(['complete', 'update:modelValue'])
+const emit = defineEmits(["complete", "update:modelValue"])
 
 function selected(asset: Asset) {
-  emit('complete', asset)
+    emit("complete", asset)
 }
 
-const props = defineProps(['asset'])
+const props = defineProps(["asset"])
 
 const asset = computed({
-  get() {
-    return props.asset
-  },
-  set(asset) {
-    emit('update:modelValue', asset)
-  }
+    get() {
+        return props.asset
+    },
+    set(asset) {
+        emit("update:modelValue", asset)
+    },
 })
 
 const sharesValue = computed(() => props.asset?.shares * props.asset?.shareValue)
 </script>
 
 <template>
-  <!-- <div class="item">
+    <!-- <div class="item">
      Add ticket symbol
      <i>
       <slot name="icon"></slot>
@@ -44,34 +44,18 @@ const sharesValue = computed(() => props.asset?.shares * props.asset?.shareValue
       <v-text-field type="number" :model-value="sharesValue" readonly label="Shares value" variant="outlined" />
     </div>
   </div> -->
-  <!-- Refactor into a v data table with crud in dialogs -->
-  <div class="d-flex" style="gap: 1rem">
-    <!-- figure out why do we need to add min width here, it should be block display anyway -->
-    <AssetItemSearch @selected="selected" style="min-width: 200px" />
+    <!-- Refactor into a v data table with crud in dialogs -->
+    <div class="d-flex" style="gap: 1rem">
+        <!-- figure out why do we need to add min width here, it should be block display anyway -->
+        <AssetItemSearch @selected="selected" style="min-width: 200px" />
 
-    <div v-if="asset" class="d-flex" style="gap: 1rem">
-      <!-- Expand into a new component -->
-      <v-text-field
-        type="number"
-        v-model="asset.shares"
-        label="Number of shares"
-        variant="outlined"
-      />
-      <v-text-field
-        type="number"
-        v-model="asset.shareValue"
-        label="Share value"
-        variant="outlined"
-      />
-      <v-text-field
-        type="number"
-        :model-value="sharesValue"
-        readonly
-        label="Shares value"
-        variant="outlined"
-      />
+        <div v-if="asset" class="d-flex" style="gap: 1rem">
+            <!-- Expand into a new component -->
+            <v-text-field type="number" v-model="asset.shares" label="Number of shares" variant="outlined" />
+            <v-text-field type="number" v-model="asset.shareValue" label="Share value" variant="outlined" />
+            <v-text-field type="number" :model-value="sharesValue" readonly label="Shares value" variant="outlined" />
+        </div>
     </div>
-  </div>
 </template>
 
 <style scoped>
