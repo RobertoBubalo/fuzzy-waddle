@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, type PropType } from "vue";
 import AssetItemSearch from "./AssetItemSearch.vue";
 import type { Asset } from "@/models/Asset";
 
@@ -9,7 +9,9 @@ function selected(asset: Asset) {
     emit("complete", asset);
 }
 
-const props = defineProps(["asset"]);
+const props = defineProps({
+    asset: { required: true, type: Object as PropType<Asset> },
+});
 
 const asset = computed({
     get() {
@@ -24,28 +26,8 @@ const sharesValue = computed(() => props.asset?.shares * props.asset?.shareValue
 </script>
 
 <template>
-    <!-- <div class="item">
-     Add ticket symbol
-     <i>
-      <slot name="icon"></slot>
-    </i>
-     <div class="details">
-      <h3>
-        <AssetItemSearch @input="log" @selected="selected" />
-        <slot name="heading"></slot>
-      </h3>
-      <slot></slot> 
-    </div>
-    <AssetItemSearch @input="log" @selected="selected" />
-
-    <div v-if="asset">
-      <v-text-field type="number" v-model="asset.shares" label="Number of shares" variant="outlined"/>
-      <v-text-field type="number" v-model="asset.shareValue" label="Share value" variant="outlined" />
-      <v-text-field type="number" :model-value="sharesValue" readonly label="Shares value" variant="outlined" />
-    </div>
-  </div> -->
     <!-- Refactor into a v data table with crud in dialogs -->
-    <v-card variant="tonal">
+    <v-card variant="elevated" elevation="4" class="mb-1">
         <v-card-text>
             <div class="d-flex" style="gap: 1rem">
                 <!-- figure out why do we need to add min width here, it should be block display anyway -->
@@ -59,6 +41,7 @@ const sharesValue = computed(() => props.asset?.shares * props.asset?.shareValue
                         type="number"
                         :model-value="sharesValue"
                         readonly
+                        base-color="success"
                         label="Shares value"
                         variant="outlined"
                     />

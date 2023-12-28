@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Asset } from "@/models/Asset";
 import { ref } from "vue";
 
 const emit = defineEmits(["selected"]);
@@ -25,9 +26,9 @@ const items = [
         shares: 56,
         shareValue: 78,
     },
-];
+] as Asset[];
 
-const selected = ref(null);
+const selected = ref<Asset>();
 
 function valueSelected() {
     emit("selected", selected.value);

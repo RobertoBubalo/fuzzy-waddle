@@ -9,21 +9,13 @@ const router = createRouter({
             name: "home",
             component: FuzzyWaddleView,
         },
-        // {
-        //   path: '/about',
-        //   name: 'about',
-        //   // route level code-splitting
-        //   // this generates a separate chunk (About.[hash].js) for this route
-        //   // which is lazy-loaded when the route is visited.
-        //   component: () => import('../views/AboutView.vue')
-        // },
         {
-            path: "/fuzzy-waddle",
-            name: "fuzzy-waddle",
+            path: "/about",
+            name: "about",
             // route level code-splitting
             // this generates a separate chunk (About.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
-            component: () => import("../views/FuzzyWaddleView.vue"),
+            component: () => import("../views/HomeView.vue"),
         },
     ],
 });
