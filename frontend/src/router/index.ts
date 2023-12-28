@@ -1,5 +1,5 @@
-import { createRouter, createWebHistory } from "vue-router"
-import FuzzyWaddleView from "../views/FuzzyWaddleView.vue"
+import { createRouter, createWebHistory } from "vue-router";
+import FuzzyWaddleView from "../views/FuzzyWaddleView.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +26,6 @@ const router = createRouter({
             component: () => import("../views/FuzzyWaddleView.vue"),
         },
     ],
-})
+});
 
-export default router
+export default router;

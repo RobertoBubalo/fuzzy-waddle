@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref } from "vue"
+import { ref } from "vue";
 
-const emit = defineEmits(["selected"])
+const emit = defineEmits(["selected"]);
 
 const items = [
     {
@@ -25,12 +25,12 @@ const items = [
         shares: 56,
         shareValue: 78,
     },
-]
+];
 
-const selected = ref(null)
+const selected = ref(null);
 
 function valueSelected() {
-    emit("selected", selected.value)
+    emit("selected", selected.value);
 }
 </script>
 <template>
