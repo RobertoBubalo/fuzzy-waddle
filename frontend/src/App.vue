@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
+import { useTaxStore } from "@/stores/tax";
+
+const taxStore = useTaxStore();
 </script>
 
 <template>
@@ -7,6 +10,7 @@ import { RouterLink, RouterView } from "vue-router";
         <nav>
             <RouterLink to="/">Home</RouterLink>
             <RouterLink to="/about">About</RouterLink>
+            <RouterLink v-show="taxStore.enabled" to="/tax">Tax</RouterLink>
         </nav>
     </header>
 

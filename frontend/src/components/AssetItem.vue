@@ -2,6 +2,7 @@
 import { computed, type PropType } from "vue";
 import AssetItemSearch from "./AssetItemSearch.vue";
 import type { Asset } from "@/models/Asset";
+import { useTaxStore } from "@/stores/tax";
 
 const emit = defineEmits(["complete", "update:modelValue"]);
 
@@ -23,6 +24,8 @@ const asset = computed({
 });
 
 const sharesValue = computed(() => props.asset?.shares * props.asset?.shareValue || null);
+
+const taxStore = useTaxStore();
 </script>
 
 <template>
@@ -45,6 +48,23 @@ const sharesValue = computed(() => props.asset?.shares * props.asset?.shareValue
                         label="Shares value"
                         variant="outlined"
                     />
+                    <!-- expand into a new component -->
+                    <div v-if="taxStore.enabled" class="d-flex">
+                        <v-text-field
+                            v-model="asset.tax.capitalGains"
+                            density="compact"
+                            type="number"
+                            label="Capital gains tax"
+                            variant="outlined"
+                        />
+                        <v-text-field
+                            v-model="asset.tax.witholding"
+                            density="compact"
+                            type="number"
+                            label="Tax witholding"
+                            variant="outlined"
+                        />
+                    </div>
                 </div>
             </div>
         </v-card-text>
