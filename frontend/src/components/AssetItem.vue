@@ -1,61 +1,74 @@
 <script setup lang="ts">
-import { computed } from "vue"
-import AssetItemSearch from "./AssetItemSearch.vue"
-import type { Asset } from "@/models/Asset"
+import { computed, type PropType } from "vue";
+import AssetItemSearch from "./AssetItemSearch.vue";
+import type { Asset } from "@/models/Asset";
+import { useTaxStore } from "@/stores/tax";
 
-const emit = defineEmits(["complete", "update:modelValue"])
+const emit = defineEmits(["complete", "update:modelValue"]);
 
 function selected(asset: Asset) {
-    emit("complete", asset)
+    emit("complete", asset);
 }
 
-const props = defineProps(["asset"])
+const props = defineProps({
+    asset: { required: true, type: Object as PropType<Asset> },
+});
 
 const asset = computed({
     get() {
-        return props.asset
+        return props.asset;
     },
     set(asset) {
-        emit("update:modelValue", asset)
+        emit("update:modelValue", asset);
     },
-})
+});
 
-const sharesValue = computed(() => props.asset?.shares * props.asset?.shareValue)
+const sharesValue = computed(() => props.asset?.shares * props.asset?.shareValue || null);
+
+const taxStore = useTaxStore();
 </script>
 
 <template>
-    <!-- <div class="item">
-     Add ticket symbol
-     <i>
-      <slot name="icon"></slot>
-    </i>
-     <div class="details">
-      <h3>
-        <AssetItemSearch @input="log" @selected="selected" />
-        <slot name="heading"></slot>
-      </h3>
-      <slot></slot> 
-    </div>
-    <AssetItemSearch @input="log" @selected="selected" />
-
-    <div v-if="asset">
-      <v-text-field type="number" v-model="asset.shares" label="Number of shares" variant="outlined"/>
-      <v-text-field type="number" v-model="asset.shareValue" label="Share value" variant="outlined" />
-      <v-text-field type="number" :model-value="sharesValue" readonly label="Shares value" variant="outlined" />
-    </div>
-  </div> -->
     <!-- Refactor into a v data table with crud in dialogs -->
-    <div class="d-flex" style="gap: 1rem">
-        <!-- figure out why do we need to add min width here, it should be block display anyway -->
-        <AssetItemSearch @selected="selected" style="min-width: 200px" />
+    <v-card variant="elevated" elevation="4" class="mb-1">
+        <v-card-text>
+            <div class="d-flex" style="gap: 1rem">
+                <!-- figure out why do we need to add min width here, it should be block display anyway -->
+                <AssetItemSearch @selected="selected" style="min-width: 200px" />
 
-        <div v-if="asset" class="d-flex" style="gap: 1rem">
-            <!-- Expand into a new component -->
-            <v-text-field type="number" v-model="asset.shares" label="Number of shares" variant="outlined" />
-            <v-text-field type="number" v-model="asset.shareValue" label="Share value" variant="outlined" />
-            <v-text-field type="number" :model-value="sharesValue" readonly label="Shares value" variant="outlined" />
-        </div>
-    </div>
+                <div v-if="asset" class="d-flex" style="gap: 1rem">
+                    <!-- Expand into a new component -->
+                    <v-text-field type="number" v-model="asset.shares" label="Number of shares" variant="outlined" />
+                    <v-text-field type="number" v-model="asset.shareValue" label="Share value" variant="outlined" />
+                    <v-text-field
+                        type="number"
+                        :model-value="sharesValue"
+                        readonly
+                        base-color="success"
+                        label="Shares value"
+                        variant="outlined"
+                    />
+                    <!-- expand into a new component -->
+                    <div v-if="taxStore.enabled" class="d-flex">
+                        <v-text-field
+                            v-model="asset.tax.capitalGains"
+                            density="compact"
+                            type="number"
+                            label="Capital gains tax"
+                            variant="outlined"
+                        />
+                        <v-text-field
+                            v-model="asset.tax.witholding"
+                            density="compact"
+                            type="number"
+                            label="Tax witholding"
+                            variant="outlined"
+                        />
+                    </div>
+                </div>
+            </div>
+        </v-card-text>
+    </v-card>
 </template>
 
 <style scoped>

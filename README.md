@@ -11,7 +11,7 @@ This app will help handle and track dividend growth and projectins for a given p
     - e2e tests
     - code coverage
     - formatter and linter
-    - on load recommendations and rules
+    - on clone recommendations and rules
 
 2. UI
     - initial asset choice and input (with mock data)

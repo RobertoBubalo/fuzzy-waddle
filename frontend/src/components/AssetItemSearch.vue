@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import { ref } from "vue"
+import type { Asset } from "@/models/Asset";
+import { useTaxStore } from "@/stores/tax";
+import { ref } from "vue";
 
-const emit = defineEmits(["selected"])
+const emit = defineEmits(["selected"]);
+
+const taxStore = useTaxStore();
 
 const items = [
     {
@@ -10,6 +14,7 @@ const items = [
         tickerSymbol: "t",
         shares: 12,
         shareValue: 23,
+        tax: { capitalGains: taxStore.tax?.capitalGains, witholding: taxStore.tax?.witholding },
     },
     {
         id: 2,
@@ -17,6 +22,7 @@ const items = [
         tickerSymbol: "b",
         shares: 34,
         shareValue: 45,
+        tax: { capitalGains: taxStore.tax?.capitalGains, witholding: taxStore.tax?.witholding },
     },
     {
         id: 3,
@@ -24,13 +30,14 @@ const items = [
         tickerSymbol: "c",
         shares: 56,
         shareValue: 78,
+        tax: { capitalGains: taxStore.tax?.capitalGains, witholding: taxStore.tax?.witholding },
     },
-]
+] as Asset[];
 
-const selected = ref(null)
+const selected = ref<Asset>();
 
 function valueSelected() {
-    emit("selected", selected.value)
+    emit("selected", selected.value);
 }
 </script>
 <template>

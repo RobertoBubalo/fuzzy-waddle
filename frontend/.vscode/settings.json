@@ -6,6 +6,7 @@
     "prettier.tabWidth": 4,
     "prettier.printWidth": 120,
     "prettier.trailingComma": "es5",
+    "prettier.semi": true,
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
