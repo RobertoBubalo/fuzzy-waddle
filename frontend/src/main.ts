@@ -8,6 +8,7 @@ import "vuetify/styles";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
+import { saveChanges, load } from "./utils/dataRetentionUtils";
 
 const vuetify = createVuetify({
     components,
@@ -20,7 +21,17 @@ const vuetify = createVuetify({
 import App from "./App.vue";
 import router from "./router";
 
-const app = createApp(App);
+const app = createApp({
+    ...App,
+    beforeCreate() {
+        // save changes to the local storage before closing tab/window
+        // Look into a better vuejs implementation
+        window.addEventListener("beforeunload", () => saveChanges());
+    },
+    created() {
+        load();
+    },
+});
 
 app.use(vuetify);
 app.use(createPinia());

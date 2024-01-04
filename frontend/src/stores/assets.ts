@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
-import type { Asset } from "@/models/Asset";
-import type { Tax } from "@/models/Tax";
+import type { Asset } from "@/models/asset";
+import type { Tax } from "@/models/tax";
 
 export const useAssetsStore = defineStore("assets", () => {
     // assets
@@ -16,6 +16,10 @@ export const useAssetsStore = defineStore("assets", () => {
         assets.value[index] = asset;
     }
 
+    function clear() {
+        assets.value = [];
+    }
+
     // taxes
     function applyTaxToAllAssets(tax: Tax) {
         assets.value.forEach((asset) => {
@@ -23,5 +27,5 @@ export const useAssetsStore = defineStore("assets", () => {
         });
     }
 
-    return { assets, addAsset, updateAsset, applyTaxToAllAssets };
+    return { assets, addAsset, updateAsset, applyTaxToAllAssets, clear };
 });

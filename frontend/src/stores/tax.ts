@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
-import type { Tax } from "@/models/Tax";
+import type { Tax } from "@/models/tax";
 
 export const useTaxStore = defineStore("tax", () => {
     const enabled = ref(false);
@@ -22,5 +22,13 @@ export const useTaxStore = defineStore("tax", () => {
         tax.value.capitalGains = val;
     }
 
-    return { tax, setTaxWitholding, setTaxCapitalGains, enabled, toggleEnabled };
+    function setTax(val: Tax) {
+        tax.value = val;
+    }
+
+    function clear() {
+        tax.value = {};
+    }
+
+    return { tax, setTaxWitholding, setTaxCapitalGains, setTax, clear, enabled, toggleEnabled };
 });
