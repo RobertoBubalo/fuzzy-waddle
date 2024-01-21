@@ -1,4 +1,4 @@
-import type { Tax } from "./Tax";
+import type { Tax } from "./tax";
 
 export interface Asset {
     id: number;

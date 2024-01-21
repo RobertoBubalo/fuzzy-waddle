@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { createPinia, setActivePinia } from "pinia";
 import { useAssetsStore } from "@/stores/assets";
-import type { Asset } from "@/models/Asset";
-import type { Tax } from "@/models/Tax";
+import type { Asset } from "@/models/asset";
+import type { Tax } from "@/models/tax";
 
 describe("Assets store", () => {
     beforeEach(() => {

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import AssetItem from "@/components/AssetItem.vue";
-import type { Asset } from "@/models/Asset";
+import type { Asset } from "@/models/asset";
 import { computed } from "vue";
-import { sharesValue } from "@/utils/AssetModelUtils";
+import { sharesValue } from "@/utils/assetModelUtils";
 import { useAssetsStore } from "@/stores/assets";
 import { useTaxStore } from "@/stores/tax";
 
@@ -13,6 +13,10 @@ const assetItems = computed(() => assets.assets);
 
 function add() {
     assets.addAsset({ tax: {} } as Asset);
+}
+
+function clear() {
+    assets.clear();
 }
 
 const totalValue = computed(
@@ -35,6 +39,7 @@ function applyToAllAssets() {
         <div class="d-flex">
             <h1>This is a fuzzy waddle page</h1>
             <v-btn @click="add" color="primary" class="ma-3">Add</v-btn>
+            <v-btn @click="clear" color="primary" variant="outlined" class="ma-3">Clear assets</v-btn>
         </div>
 
         <div class="d-flex">
@@ -63,3 +68,4 @@ function applyToAllAssets() {
         />
     </div>
 </template>
+@/utils/assetModelUtils@/utils/q@/utils/assetModelUtils
