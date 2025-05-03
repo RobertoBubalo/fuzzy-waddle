@@ -34,7 +34,7 @@ const taxStore = useTaxStore();
         <v-card-text>
             <div class="d-flex" style="gap: 1rem">
                 <!-- figure out why do we need to add min width here, it should be block display anyway -->
-                <AssetItemSearch @selected="selected" style="min-width: 200px" />
+                <AssetItemSearch v-model="asset" @selected="selected" style="min-width: 200px" />
 
                 <div v-if="asset" class="d-flex" style="gap: 1rem">
                     <!-- Expand into a new component -->

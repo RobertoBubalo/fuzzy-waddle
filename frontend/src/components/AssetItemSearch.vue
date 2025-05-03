@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Asset } from "@/models/Asset";
 import { useTaxStore } from "@/stores/tax";
-import { ref } from "vue";
+import { ref, type PropType } from "vue";
 
 const emit = defineEmits(["selected"]);
 
@@ -34,7 +34,10 @@ const items = [
     },
 ] as Asset[];
 
-const selected = ref<Asset>();
+const props = defineProps({
+    asset: Object as PropType<Asset>,
+});
+const selected = ref<Asset>(props.asset ?? {...items[0]});
 
 function valueSelected() {
     emit("selected", selected.value);
@@ -47,10 +50,11 @@ function valueSelected() {
         :items="items"
         item-title="name"
         :item-value="(i) => i.id"
-        @update:model-value="valueSelected"
         label="Input ticker symbol"
         variant="outlined"
         return-object
+        auto-select-first
+        @update:model-value="valueSelected"
     />
 </template>
 <!-- On selected event - blur the input -->
