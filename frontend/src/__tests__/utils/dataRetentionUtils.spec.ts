@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 
-import type { Asset } from "@/models/asset";
+import type { Asset } from "@/models/Asset";
 import { load } from "@/utils/dataRetentionUtils";
 
 describe("Asset model utils", () => {

@@ -1,5 +1,5 @@
-import type { Asset } from "@/models/asset";
-import type { Tax } from "@/models/tax";
+import type { Asset } from "@/models/Asset";
+import type { Tax } from "@/models/Tax";
 import { useAssetsStore } from "@/stores/assets";
 import { useTaxStore } from "@/stores/tax";
 

@@ -1,7 +1,7 @@
 {
     "editor.formatOnSave": false,
     "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "explicit"
+        "source.fixAll.eslint": "always"
     },
     "prettier.tabWidth": 4,
     "prettier.printWidth": 120,
@@ -22,5 +22,5 @@
     "[vue]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "files.eol": "\n",
+    "files.eol": "auto",
 }
