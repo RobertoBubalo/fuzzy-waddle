@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
-import type { Tax } from "@/models/Tax";
+import type { Tax } from "@/models/tax";
 
 export const useTaxStore = defineStore("tax", () => {
     const enabled = ref(false);
