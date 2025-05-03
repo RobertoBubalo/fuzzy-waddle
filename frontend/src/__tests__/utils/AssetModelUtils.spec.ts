@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 
-import type { Asset } from "@/models/asset";
-import { sharesValue } from "@/utils/assetModelUtils";
+import type { Asset } from "@/models/Asset";
+import { sharesValue } from "@/utils/AssetModelUtils";
 
 describe("Asset model utils", () => {
     it("sharesValue given 2 positive numbers - returns multiplication", () => {

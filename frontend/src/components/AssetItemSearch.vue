@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Asset } from "@/models/asset";
+import type { Asset } from "@/models/Asset";
 import { useTaxStore } from "@/stores/tax";
 import { ref } from "vue";
 
