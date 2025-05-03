@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import AssetItem from "@/components/AssetItem.vue";
-import type { Asset } from "@/models/Asset";
+import type { Asset } from "@/models/asset";
 import { computed } from "vue";
-import { sharesValue } from "@/utils/AssetModelUtils";
+import { sharesValue } from "@/utils/assetModelUtils";
 import { useAssetsStore } from "@/stores/assets";
 import { useTaxStore } from "@/stores/tax";
 
@@ -68,3 +68,4 @@ function applyToAllAssets() {
         />
     </div>
 </template>
+@/utils/assetModelUtils@/utils/q@/utils/assetModelUtils

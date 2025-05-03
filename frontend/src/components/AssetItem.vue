@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, type PropType } from "vue";
 import AssetItemSearch from "./AssetItemSearch.vue";
-import type { Asset } from "@/models/Asset";
+import type { Asset } from "@/models/asset";
 import { useTaxStore } from "@/stores/tax";
 
 const emit = defineEmits(["complete", "update:modelValue"]);

@@ -26,15 +26,6 @@ const router = createRouter({
             // which is lazy-loaded when the route is visited.
             component: () => import("../views/TaxView.vue"),
         },
-        {
-            // TODO: add a guard
-            path: "/pg",
-            name: "pg",
-            // route level code-splitting
-            // this generates a separate chunk (About.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () => import("../views/PlaygroundView.vue"),
-        },
     ],
 });
 

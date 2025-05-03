@@ -11,35 +11,17 @@ const taxStore = useTaxStore();
             <RouterLink to="/">Home</RouterLink>
             <RouterLink to="/about">About</RouterLink>
             <RouterLink v-show="taxStore.enabled" to="/tax">Tax</RouterLink>
-            <RouterLink to="/pg">Playground</RouterLink>
         </nav>
     </header>
 
     <RouterView />
-
-    <!-- <footer>
-        <div><span>test</span></div>
-    </footer> -->
 </template>
 
 <style scoped>
 header {
     line-height: 1.5;
     max-height: 100vh;
-    /* position: sticky;
-    top: 0;
-    background-color: aqua;
-    width: 100%; */
 }
-
-/* footer {
-    line-height: 1.5;
-    max-height: 100vh;
-    position: sticky;
-    bottom: 0;
-    background-color: red;
-    width: 100%;
-} */
 
 .logo {
     display: block;
